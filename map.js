@@ -1,52 +1,139 @@
 // initializes the map on the "mapid" div centered on Boston
 var mymap = L.map('mapid').setView([-49.5472, 307.312], 2);
+var popup = L.popup();
 
 // Mapbox Streets tile layer
 L.tileLayer(
-    'http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}',
-    {
-    attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
-    maxZoom: 13,
-    minZoom: 2,
-    accessToken: 'pk.eyJ1IjoiYWxhY2FydGVyIiwiYSI6ImdYbndnVUEifQ.u6xXEp3n8BBm_vHj_0jAvQ'
-}).addTo(mymap);
+    'http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
+        maxZoom: 13,
+        minZoom: 2,
+        id: 'alacarter.jh6di32d',
+        accessToken: 'pk.eyJ1IjoiYWxhY2FydGVyIiwiYSI6ImdYbndnVUEifQ.u6xXEp3n8BBm_vHj_0jAvQ'
+    }).addTo(mymap);
 
 
-function plotStations() {
+function plotStations(stations) {
     for (var i = 0; i < stations.length; i++) {
-      var station = stations[i];
+        station = stations[i];
 
-      // radius by depth
-      var depth = station['bot_depth'];
-      var id = station['bodc_station'];
-      var radius = (depth*10)+10;  // a number 10-27
+        // radius by depth
+        var depth = station['bot_depth'];
+        var id = station['bodc_station'];
 
-      // color circles
-      var options = {
-        fillOpacity: 0.5,
-        color: '#e6002e',
-        fillColor: '#ff0033'};
+        // null values are passed back as the string "null"
+        if (depth == "null"){
+            depth = 1;
+        }
+        var radius = (depth * 10) + 10; // a number 10-27
 
-      // Instantiates a circle object given a geographical point, a radius in meters and optionally an options object.
-      var circle = L.circle(
-        [station['latitude'], station['longitude']], radius, options).addTo(mymap);
-      circle.bindPopup('bot_depth: ' + depth + '<br>' + 'bodc_station: ' + id + '<br>');
+        latitude = Number(station['latitude']);
+        longitude = Number(station['longitude']);
+
+        // color circles
+        var options = {
+            fillOpacity: 0.5,
+            color: '#e6002e',
+            fillColor: '#ff0033'
+        };
+
+        // Instantiates a circle object given a geographical point, a radius in meters and optionally an options object.
+        var circle = L.circle(
+            [latitude, longitude], radius, options).addTo(mymap);
+
+        // circle.bindPopup('bot_depth: ' + depth + '<br>' + 'bodc_station: ' + id + '<br>');
     }
 }
 
-function distance(lat1, lon1, lat2, lon2, unit) {
+function distanceBetweenCoordinates(lat1, lon1, lat2, lon2, unit) {
     // unit is M for Miles, K for Kilometers, N for Nautical miles
-    var radlat1 = Math.PI * lat1/180
-    var radlat2 = Math.PI * lat2/180
-    var theta = lon1-lon2
-    var radtheta = Math.PI * theta/180
+    var radlat1 = Math.PI * lat1 / 180
+    var radlat2 = Math.PI * lat2 / 180
+    var theta = lon1 - lon2
+    var radtheta = Math.PI * theta / 180
     var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
     dist = Math.acos(dist)
-    dist = dist * 180/Math.PI
+    dist = dist * 180 / Math.PI
     dist = dist * 60 * 1.1515
-    if (unit=="K") { dist = dist * 1.609344 }
-    if (unit=="N") { dist = dist * 0.8684 }
+    if (unit == "K") { dist = dist * 1.609344 }
+    if (unit == "N") { dist = dist * 0.8684 }
     return dist
 }
 
-plotStations()
+// sqlString: a sql query (with no bigdawg outer syntax
+// callback: function to call with result rows as the input
+// result format: [{"field1":"val","field2":"val",...},{"field1":"val",...},...]
+function bdRelationalQuery(sqlString, callback) {
+    var queryString = "bdrel(" + sqlString + ");";
+    bdRaw(queryString, callback);
+};
+
+// bigDawgQuery: a fully-functional big dawg query (with all necessary syntax)
+// callback: function to call with result rows as the input
+// result format: [{"field1":"val","field2":"val",...},{"field1":"val",...},...]
+function bdRaw(bigDawgQuery, callback) {
+    //console.log(queryString);
+    $.post("http://localhost:8080/bigdawg/query", JSON.stringify(bigDawgQuery), function(result) {
+        var lines = result.split("\n");
+        //console.log(lines);
+        var rows = [];
+        var fields = lines[0].split("\t");
+        for (var i = 1; i < lines.length; i++) {
+            var line = lines[i];
+            if (line.length > 0) {
+                var row = {};
+                var vals = line.split("\t")
+                for (var j = 0; j < vals.length; j++) {
+                    row[fields[j]] = vals[j];
+                }
+                rows.push(row);
+            }
+        }
+        callback(rows);
+    });
+};
+
+
+
+function highlightCoordinates(idArray) {
+    for (var i = 0; i < idArray.length; i++) {
+        id = idArray[i];
+
+        var circle = L.circle(
+            [station['latitude'], station['longitude']], radius, options)
+    }
+}
+
+function onMapClick(e) {
+    // onMapClick, find all stations within n miles of the click
+    var lat = e.latlng['lat']
+    var lng = e.latlng['lng']
+
+    var nearbyStations = []
+    for (var i = 0; i < stations.length; i++) {
+        var station = stations[i];
+        var distance = distanceBetweenCoordinates(
+            lat, lng, station['latitude'], station['longitude'], 'K');
+
+        if (distance <= 500) {
+            nearbyStations.push(station);
+        }
+    }
+
+    var content = "You clicked the map at " + e.latlng.toString() + "<br />" + nearbyStations.length.toString();
+    popup
+        .setLatLng(e.latlng)
+        .setContent(content)
+        .openOn(mymap);
+
+    console.log(nearbyStations);
+}
+
+mymap.on('click', onMapClick);
+
+
+
+bdRelationalQuery(
+    "select * from sampledata.station_info",
+    function(data){plotStations(data)})
+
