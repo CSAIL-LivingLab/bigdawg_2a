@@ -4,6 +4,20 @@ html, body {
     padding: 0;
 }
 
+#wrap {
+    height:100%;
+}
+
 #mapid {
+    display: inline-block;
     height: 100%;
+    width: 75%;
+}
+
+#infoid {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    width: 20%;
+    padding-left: 1em;
 }

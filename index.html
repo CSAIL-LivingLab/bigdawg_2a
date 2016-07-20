@@ -6,11 +6,18 @@
         <link rel="stylesheet" href="./leaflet.css">
         <link rel="stylesheet" href="./map.css">
         <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
-        <script src="./stations.js"></script>
         <script defer src="./leaflet.js"></script>
         <script defer src="./map.js"></script>
     </head>
     <body>
-        <div id="mapid"></div>
+        <div id="wrap">
+            <div id="mapid"></div>
+            <div id="infoid">
+                <div id="infotext">
+                    <h1 id="infotitle">foo</h1>
+                    <span id="infodetail">bar</span>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
