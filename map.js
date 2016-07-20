@@ -1,5 +1,5 @@
 // initializes the map on the "mapid" div centered on Boston
-var mymap = L.map('mapid').setView([-49.5472, 307.312], 2);
+var mymap = L.map('mapid').setView([10, 320], 3);
 var popup = L.popup();
 
 // Mapbox Streets tile layer
@@ -17,9 +17,9 @@ function plotStations(stations) {
     for (var i = 0; i < stations.length; i++) {
         station = stations[i];
 
-        // radius by depth
         var depth = station['bot_depth'];
         var id = station['bodc_station'];
+        var sampleCount = station['sample_count'];
 
         // null values are passed back as the string "null"
         if (depth == "null"){
@@ -41,9 +41,11 @@ function plotStations(stations) {
         var circle = L.circle(
             [latitude, longitude], radius, options).addTo(mymap);
 
-        // circle.bindPopup('bot_depth: ' + depth + '<br>' + 'bodc_station: ' + id + '<br>');
+        var popup = 'Station ID: ' + id + '<br />Bot Depth: ' + depth
+        circle.bindPopup(popup);
     }
 }
+
 
 function distanceBetweenCoordinates(lat1, lon1, lat2, lon2, unit) {
     // unit is M for Miles, K for Kilometers, N for Nautical miles
@@ -133,7 +135,11 @@ mymap.on('click', onMapClick);
 
 
 
+// bdRelationalQuery(
+//     "SELECT count(s.bodc_station), s.longitude, s.latitude, s.bot_depth AS sample_count FROM sampledata.station_info AS s, sampledata.main AS m WHERE s.bodc_station = m.bodc_station GROUP BY s.",
+//    function(data){plotStations(data)})
+
 bdRelationalQuery(
-    "select * from sampledata.station_info",
+    "SELECT s.bodc_station, s.longitude, s.latitude, s.bot_depth FROM sampledata.station_info AS s",
     function(data){plotStations(data)})
 
