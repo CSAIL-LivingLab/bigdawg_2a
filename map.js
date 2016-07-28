@@ -160,6 +160,38 @@ function onMapClick(e) {
     console.log(nearbyStations);
 }
 
+function bindInput(){
+    var inputbox = $('#shiplogid')
+    inputbox.on('input', function() {
+        searchAccumulo("word|" + inputbox.val())
+    });
+}
+
+function searchAccumulo(searchTerm){
+    bdText(searchTerm, function(data){displayText(data)})
+}
+
+function displayText(rows){
+    var resultdiv = $('#resultsid');
+    resultdiv.empty();
+
+    for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var match = row['match'];
+        var accumuloDoc = row['accumuloDoc'];
+        var page = row['page'];
+
+        var string = "<div class='row'>" + match + " " + accumuloDoc + " " + page + "</div>";
+
+        resultdiv.append(string);
+
+
+    }
+
+    console.log(rows[0])
+}
+
+bindInput();
 mymap.on('click', onMapClick);
 
 
@@ -174,11 +206,11 @@ bdRelationalQuery(
         plotStations(data);
     });
 
-bdText(
-    "word|boat",
-    function(data){console.log(data)});
+// bdText(
+//     "word|boat",
+//     function(data){console.log(data)});
 
 // This will fail
-bdText(
-    "word|ewfopijfe",
-    function(data){console.log(data)});
+// bdText(
+//     "word|ewfopijfe",
+//     function(data){console.log(data)});
