@@ -41,7 +41,7 @@ function plotStations(stations) {
         var circle = L.circle(
             [latitude, longitude], radius, options).addTo(mymap);
 
-        var popup = 'Station ID: ' + id + '<br />Bot Depth: ' + depth
+        var popup = 'Station ID: ' + id + '<br />Bot Depth: ' + depth + '<br />Latitude: ' + latitude + '<br />Longitude: ' + longitude
         circle.bindPopup(popup);
     }
 }
@@ -95,7 +95,36 @@ function bdRaw(bigDawgQuery, callback) {
     });
 };
 
+function bdText(bigDawgTextQuery, callback){
+    var queryString = "bdtext(classdb55, cruise_reports_TedgeT('" + bigDawgTextQuery + ",',:));";
+    $.post("http://localhost:8080/bigdawg/query", JSON.stringify(queryString), function(result) {
+        // remove the first two lines, which just are ["started script!!", "doing query"]
+        rows = [];
+        var lines = result.trim().split("\n");
+        var lines = lines.slice(2,lines.length);
 
+        for (var i = 0; i < lines.length; i++){
+            var line = lines[i];
+            var columns = line.split("\t");
+
+            var match = columns[0];
+            var accumuloDoc = columns[1];
+            var page = parseInt(columns[2]);
+
+            rows.push({
+                'match': match,
+                'accumuloDoc': accumuloDoc,
+                'page': page});
+        }
+
+        callback(rows)
+    });
+
+}
+
+// curl -X POST -d "bdtext(classdb55, cruise_reports_TedgeT('word|deep,',:));" http://localhost:8080/bigdawg/query
+// curl -X POST -d "bdtext(classdb55, cruise_reports_TedgeT('word|Paleoceanographic,',:));" http://localhost:8080/bigdawg/query
+// curl -X POST -d "bdtext(classdb55, cruise_reports_Tedge('UK40S_page_99,',:));" http://localhost:8080/bigdawg/query
 
 function highlightCoordinates(idArray) {
     for (var i = 0; i < idArray.length; i++) {
@@ -141,5 +170,15 @@ mymap.on('click', onMapClick);
 
 bdRelationalQuery(
     "SELECT s.bodc_station, s.longitude, s.latitude, s.bot_depth FROM sampledata.station_info AS s",
-    function(data){plotStations(data)})
+    function(data){
+        plotStations(data);
+    });
 
+bdText(
+    "word|boat",
+    function(data){console.log(data)});
+
+// This will fail
+bdText(
+    "word|ewfopijfe",
+    function(data){console.log(data)});
