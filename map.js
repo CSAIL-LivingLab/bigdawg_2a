@@ -114,7 +114,7 @@ function bdText(bigDawgTextQuery, callback){
             rows.push({
                 'match': match,
                 'accumuloDoc': accumuloDoc,
-                'page': page});
+                'numberOfMentions': page});
         }
 
         callback(rows)
@@ -162,8 +162,13 @@ function onMapClick(e) {
 
 function bindInput(){
     var inputbox = $('#shiplogid')
-    inputbox.on('input', function() {
-        searchAccumulo("word|" + inputbox.val())
+    inputbox.on('keypress', function(event) {
+
+        if(event.which === 13){
+            console.log('enter pressed');
+            searchAccumulo("word|" + inputbox.val())
+        }
+
     });
 }
 
@@ -173,19 +178,17 @@ function searchAccumulo(searchTerm){
 
 function displayText(rows){
     var resultdiv = $('#resultsid');
-    resultdiv.empty();
+    $('.row').empty();
 
     for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
-        var match = row['match'];
+        var match = row['match'].split('|')[1];
         var accumuloDoc = row['accumuloDoc'];
-        var page = row['page'];
+        var numberOfMentions = row['numberOfMentions'];
 
-        var string = "<div class='row'>" + match + " " + accumuloDoc + " " + page + "</div>";
+        var string = "<tr class='row'>" + "<td>" + match + "</td><td>" + accumuloDoc + "</td><td>" + numberOfMentions + "</tr>";
 
         resultdiv.append(string);
-
-
     }
 
     console.log(rows[0])
@@ -205,6 +208,8 @@ bdRelationalQuery(
     function(data){
         plotStations(data);
     });
+
+searchAccumulo('word|boat');
 
 // bdText(
 //     "word|boat",
