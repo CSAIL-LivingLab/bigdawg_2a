@@ -186,7 +186,14 @@ function displayText(rows){
         var accumuloDoc = row['accumuloDoc'];
         var numberOfMentions = row['numberOfMentions'];
 
-        var string = "<tr class='row'>" + "<td>" + match + "</td><td>" + accumuloDoc + "</td><td>" + numberOfMentions + "</tr>";
+        // format the accumulo document name, extract the page, make a link, etc
+        var arr = accumuloDoc.split('_');
+        var page = accumuloDoc[accumuloDoc.length-1];
+        var docName = arr[0] + '_' + arr[1];
+        var link = 'http://localhost/pdfjs/web/viewer.html?file=' + docName + '.pdf#search=' + match;
+        
+        var docLink = '<a href="' + link + '" target="_blank">' + arr[0] + ', page ' + page + '</a>';
+        var string = '<tr class="row">' + '<td>' + match + '</td><td>' + docLink + '</td><td>' + numberOfMentions + '</tr>';
 
         resultdiv.append(string);
     }
