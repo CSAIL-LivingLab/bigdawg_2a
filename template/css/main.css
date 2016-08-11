@@ -1,0 +1,46 @@
+/*color scheme: http://www.awwwards.com/sites/basi-systems*/
+
+body {
+  background-color: #d0c8c1;
+}
+
+.navbar {
+	background-color: #ffffff;
+}
+
+.navbar * {
+  color: #919394;
+}
+
+.navbar-brand {
+	color: black;
+	letter-spacing: 0.05em;
+	font-weight: 600;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.navbar a:hover{
+	color: #c8b682;
+
+}
+
+.navbar-toggle {
+	border-color: #919394;
+	border: 1px solid;
+}
+
+.navbar-toggle .icon-bar{
+	background-color: #c8b682;
+}
+
+/*.container:not(nav){
+	padding-top: 30px;
+}*/
+
+.container:not(nav .container) {
+	padding-top: 30px;
+}
