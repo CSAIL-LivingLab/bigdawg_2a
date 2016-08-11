@@ -21,13 +21,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- screen 2a -->
-    <link rel="stylesheet" href="./css/leaflet.css">
-    <link rel="stylesheet" href="./css/map.css">
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <script defer src="./js/leaflet.js"></script>
-    <script defer src="./js/map.js"></script>
-    <!-- /screen 2a -->
 </head>
 
 <body>
@@ -52,18 +45,16 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="row top_padding"></div>
-    <div class="row">
-       <div id="mapid" class=".col-md-8"></div>
-       <div class=".col-md-4" id="infoid">
-           <input id="shiplogid" type="text" placeholder="search ship's logs">
-            <table id="resultsid">
-                <tr>
-                    <th>Word Found</th>
-                    <th>Document and Page</th>
-                    <th># Matches</th>
-                </tr>
-            </table>
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-3 no-float">Navigation</div>
+            <div class="col-md-9 no-float">Content</div>
+        </div>
+    </div> -->
+
+    <div class="row full_height">
+       <div class="full_height .col-md-12">
+           <iframe src="../2a/index.html" class="full_height full_width" scrolling="no"></iframe>
        </div>
     </div>
 

@@ -1,7 +1,14 @@
 /*color scheme: http://www.awwwards.com/sites/basi-systems*/
 
+html, body { height: 100% }
+
 body {
-  background-color: #d0c8c1;
+	background-color: #d0c8c1;
+}
+
+iframe {
+	overflow:hidden;
+	padding-top: 50px;
 }
 
 .navbar {
@@ -18,14 +25,8 @@ body {
 	font-weight: 600;
 }
 
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
-}
-
 .navbar a:hover{
 	color: #c8b682;
-
 }
 
 .navbar-toggle {
@@ -42,5 +43,19 @@ body {
 }*/
 
 .container:not(nav .container) {
-	padding-top: 30px;
+	display:table;
+    width: 100%;
+    margin-top: -50px;
+    padding: 50px 0 0 0; /*set left/right padding according to needs*/
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
+.full_height{
+	height:100%;
+}
+
+.full_width{
+	width: 100%;
+}
+
