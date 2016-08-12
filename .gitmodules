@@ -1,0 +1,3 @@
+[submodule "istc-explorer"]
+	path = istc-explorer
+	url = https://github.com/uwdata/istc-explorer
