@@ -13,3 +13,11 @@ This contains demo screens for the bigdawg 2016 ISTC system. Individual screens'
 1. Port forward to istc3: `ssh -i ~/.ssh/id_rsa -L localhost:8080:172.16.4.61:8181 YOURUSERNAME@txe1-portal.mit.edu`
 2. Run a python simplehttpserver in the home directory: `python -m SimpleHTTPServer 8000`
 3. Open localhost in the browser: http://localhost:8000/template/
+
+
+##Screen Specific Instructions
+1. For screen 1, you need to have S-Store running
+2. For screen 4, you need to have Tupleware running:
+   ./tupleware -s  http://172.16.4.52:8181/bigdawg/query -p 9998
+   Port Forward 9998: ssh -L localhost:9999:hostname:9998 YOURUSERNAME@txe1-portal.mit.edu`
+
