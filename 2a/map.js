@@ -190,7 +190,8 @@ function displayText(rows){
         var arr = accumuloDoc.split('_');
         var page = accumuloDoc[accumuloDoc.length-1];
         var docName = arr[0] + '_' + arr[1];
-        var link = 'http://' + window.location.host + '/pdfjs/web/viewer.html?file=' + docName + '.pdf#search=' + match;
+        // host path + port to be hardcoded because iframes don't work well with window.parent.location.host
+        var link = 'http://localhost:8000' + '/2a/pdfjs/web/viewer.html?file=' + docName + '.pdf#search=' + match;
         
         var docLink = '<a href="' + link + '" target="_blank">' + arr[0] + ', page ' + page + '</a>';
         var string = '<tr class="row">' + '<td>' + match + '</td><td>' + docLink + '</td><td>' + numberOfMentions + '</tr>';
@@ -216,7 +217,7 @@ bdRelationalQuery(
         plotStations(data);
     });
 
-searchAccumulo('word|boat');
+// searchAccumulo('word|boat');
 
 // bdText(
 //     "word|boat",

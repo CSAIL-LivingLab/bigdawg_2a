@@ -1,3 +1,9 @@
 [submodule "istc-explorer"]
 	path = istc-explorer
 	url = https://github.com/uwdata/istc-explorer
+[submodule "sflviz"]
+	path = sflviz
+	url = https://github.com/algorri94/sflviz.git
+[submodule "screen4"]
+	path = screen4
+	url = https://github.com/RogerTangos/screen4.git

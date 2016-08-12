@@ -40,9 +40,10 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a onclick="screen0()"href="#">[0]</a></li>
-                    <li><a href="#">[1]</a></li>
-                    <li><a href="#part_1" onclick="screen2a()">[2]</a></li>
-                    <li><a href="#part_2">[3]</a></li>
+                    <li><a onclick="screen1()" href="#">[1]</a></li>
+                    <li><a href="#" onclick="screen2a()">[2]</a></li>
+                    <li><a href="#">[3]</a></li>
+                    <li><a href="#" onclick="screen4()">[4]</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -50,13 +51,15 @@
     </nav>
 
     <div class="row full_height">
-       <div class="full_height .col-md-12">
-           <iframe src="../istc-explorer/web/index.html"ope id="0" class="full_height full_width" scrolling="no"></iframe>
-           <iframe src="../2a/index.html" id="2a" class="full_height full_width" scrolling="no" style="visibility: hidden;"></iframe>
+       <!-- <div class="full_height .col-md-12"> -->
+           <iframe src="http://localhost:8000/istc-explorer/web/index.html"ope id="0" class="full_height full_width" scrolling="no"></iframe>
+           <iframe src="http://localhost:8000/sflviz/index.html" id="1" class="full_height full_width" scrolling="no" style="visibility: hidden;"></iframe>
+           <iframe src="http://localhost:8000/2a/index.html" id="2a" class="full_height full_width" scrolling="no" style="visibility: hidden;"></iframe>
+           <iframe src="http://localhost:8000/screen4/index.html" id="4" class="full_height full_width" scrolling="no" style="visibility: hidden;"></iframe>
 
            <!-- more demo screen iframes go here -->
 
-       </div>
+       <!-- </div> -->
     </div>
     <!-- /row -->
 
