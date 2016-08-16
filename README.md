@@ -10,6 +10,7 @@ This contains demo screens for the bigdawg 2016 ISTC system. Individual screens'
 ----
 
 ## Running this repo
+
 1. Port forward to E1:
 For screens 0,2,4: Forward 8001 to node-048:8001 and 8080
 to 172.16.5.51:8181
@@ -49,3 +50,7 @@ Myria Web: node-111:8124
 ##Using script in demo_scripts:
 
 $python runDemo.py USERNAME
+=======
+1. Port forward to txe1: `ssh -i ~/.ssh/id_rsa -L localhost:8080:172.16.4.61:8181 YOURUSERNAME@txe1-portal.mit.edu`
+2. Run a python simplehttpserver in the home directory: `python -m SimpleHTTPServer 8000`
+3. Open localhost in the browser: http://localhost:8000/template/
