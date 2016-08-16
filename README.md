@@ -15,9 +15,11 @@ For screens 0,2,4: Forward 8001 to node-048:8001 and 8080
 to 172.16.5.51:8181
 For TupleWare: Forward 9999 to node-041:9999
 For S-Store: Forward 8123 to 172.16.4.51:8181
+For Myria Server: Forward 8753 to node-109:8753
+For Myria Web: Forward 8124 to node-111:8124
 
 For example:
- $ssh username@txe1-login.mit.edu -L 9999:node-041:9999 -L 8001:node-048:8001 -L 8080:172.16.4.61:8181 -L 8123:172.16.4.51:8181
+ $ssh username@txe1-login.mit.edu -L 9999:node-041:9999 -L 8001:node-048:8001 -L 8080:172.16.4.61:8181 -L 8123:172.16.4.51:8181 -L 8753:node-109:8753 -L 8124:node-111:8124
 
 2. Run a python simplehttpserver in the home directory: `python -m SimpleHTTPServer 8001`
 3. Open localhost in the browser: http://localhost:8001/template/
@@ -41,6 +43,8 @@ S-Store: node-041
 BigDAWG for S-Store: 172.16.4.51:8181
 BigDAWG (others): 172.16.4.61:8181
 Webserver: node-048:8001
+Myria: node-109:8753
+Myria Web: node-111:8124
 
 ##Using script in demo_scripts:
 
