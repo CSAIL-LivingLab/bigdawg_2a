@@ -11,6 +11,15 @@ iframe {
 	padding-top: 50px;
 }
 
+
+#logo{
+    width:30px; /* you can use % */
+    height: auto;
+    margin-right:30px;
+    margin-top: 5px;
+}
+
+
 .navbar {
 	background-color: #ffffff;
 	border-bottom: lightgray;
