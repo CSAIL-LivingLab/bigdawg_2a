@@ -3,7 +3,7 @@
 html, body { height: 100% }
 
 body {
-	background-color: #d0c8c1;
+	background-color: #ffffff;
 }
 
 iframe {
@@ -13,6 +13,9 @@ iframe {
 
 .navbar {
 	background-color: #ffffff;
+	border-bottom: lightgray;
+	border-bottom-width: thin;
+	border-style: solid;
 }
 
 .navbar * {
