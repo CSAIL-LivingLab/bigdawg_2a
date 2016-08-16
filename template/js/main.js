@@ -9,8 +9,8 @@ function screen1(){
 }
 
 function screen2a(){
-	$('iframe:not(#2a)').fadeOut()
-	$('#2a').css('visibility','visible').fadeIn()
+	$('iframe:not(#2)').fadeOut()
+	$('#2').css('visibility','visible').fadeIn()
 }
 
 function screen3(){
@@ -19,6 +19,6 @@ function screen3(){
 }
 
 function screen4c(){
-	$('iframe:not(#4c)').fadeOut()
-	$('#4c').css('visibility','visible').fadeIn()
+	$('iframe:not(#4b)').fadeOut()
+	$('#4b').css('visibility','visible').fadeIn()
 }

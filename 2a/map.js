@@ -191,7 +191,7 @@ function displayText(rows){
         var page = accumuloDoc[accumuloDoc.length-1];
         var docName = arr[0] + '_' + arr[1];
         // host path + port to be hardcoded because iframes don't work well with window.parent.location.host
-        var link = 'http://localhost:8000' + '/2a/pdfjs/web/viewer.html?file=' + docName + '.pdf#search=' + match;
+        var link = 'http://localhost:8001' + '/2a/pdfjs/web/viewer.html?file=' + docName + '.pdf#search=' + match;
         
         var docLink = '<a href="' + link + '" target="_blank">' + arr[0] + ', page ' + page + '</a>';
         var string = '<tr class="row">' + '<td>' + match + '</td><td>' + docLink + '</td><td>' + numberOfMentions + '</tr>';
