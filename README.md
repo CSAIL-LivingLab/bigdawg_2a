@@ -20,10 +20,9 @@ For Myria Server: Forward 8753 to node-109:8753
 For Myria Web: Forward 8124 to node-111:8124
 
 For example:
- $ssh username@txe1-login.mit.edu -L 9999:node-041:9999 -L 8001:node-048:8001 -L 8080:172.16.4.61:8181 -L 8123:172.16.4.51:8181 -L 8753:node-109:8753 -L 8124:node-111:8124
+ $ `ssh -L 9999:node-041:9999 -L 8001:node-048:8001 -L 8080:172.16.4.61:8181 -L 8123:172.16.4.51:8181 -L 8753:node-109:8753 -L 8124:node-111:8124 YOURUSERNAME@txe1-portal.mit.edu -N -f`
 
-2. Run a python simplehttpserver in the home directory: `python -m SimpleHTTPServer 8001`
-3. Open localhost in the browser: http://localhost:8001/template/
+2. Open `template/index.html` in the browser
 
 
 ##Screen Specific Instructions
