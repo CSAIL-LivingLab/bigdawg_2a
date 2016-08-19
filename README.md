@@ -21,7 +21,13 @@ For Myria Web: Forward 8124 to node-111:8124
 For Macrobase: Forward 8765 to node-048:8765
 
 For example:
- $ ssh arcarter@txe1-login.mit.edu -L 9999:node-041:9999 -L 8001:node-048:8001 -L 8080:172.16.4.61:8181 -L 8123:172.16.4.51:8181 -L 8753:node-109:8753 -L 8124:node-111:8124 -L 8765:node-048:8765
+ $ ssh arcarter@txe1-login.mit.edu -L 9999:node-041:9999 -L
+ 8001:node-048:8001 -L 8080:172.16.4.61:8181 -L 8123:172.16.4.51:8181
+ -L 8753:node-109:8753 -L 8124:node-111:8124 -L 8765:node-048:8765
+
+$ ssh vijay@txe1-login.mit.edu -L 9999:node-041:9999 -L
+ 8001:node-048:8001 -L 8080:172.16.4.61:8181 -L 8123:172.16.4.51:8181
+ -L 8753:node-109:8753 -L 8124:node-111:8124 -L 8765:node-048:8765
 
 3. Open `template/index.html` in the browser
 
@@ -37,7 +43,14 @@ following script (it runs for ~20 minutes)
    $./tupleware -s  http://172.16.4.52:8181/bigdawg/query -p 9999
 
 3. For Screen 4a, you need to have macrobase running:
-/home/gridsan/groups/istcdata/technology/macrobase/macrobase/bin/server.sh conf/istc_demo.yaml
+$./macrobase/bin/server.sh conf/istc_demo.yaml
+
+(to change the port, you need to add the following:
+    applicationConnectors:
+        - type: http
+        port: 8765
+under server:
+) link: https://github.com/stanford-futuredata/macrobase/wiki/Development-Notes		  
 
 ##Current Places where things are running:
 
