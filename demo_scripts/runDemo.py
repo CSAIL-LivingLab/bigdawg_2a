@@ -12,7 +12,11 @@ print "command: " + cmd1
 
 os.system(cmd1)
 
-webbrowser.open_new('http://localhost:8001/template')
+webbrowser.open_new('http://localhost:8001/template/#screen0')
+webbrowser.open_new('http://localhost:8001/template/#screen1')
+webbrowser.open_new('http://localhost:8001/template/#screen3')
+webbrowser.open_new('http://localhost:8001/template/#screen4a')
+webbrowser.open_new('http://localhost:8001/template/#screen4b')
 ## webbrowser.open_new('http://localhost:8001/istc-explorer/web/')
 ## webbrowser.open_new('http://localhost:8001/sflviz/')
 ## webbrowser.open_new('http://localhost:8001/2a/')
