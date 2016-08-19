@@ -18,6 +18,7 @@ For TupleWare: Forward 9999 to node-041:9999
 For S-Store: Forward 8123 to 172.16.4.51:8181
 For Myria Server: Forward 8753 to node-109:8753
 For Myria Web: Forward 8124 to node-111:8124
+For Macrobase: Forward 8765 to node-048:8765
 
 For example:
  $ ssh arcarter@txe1-login.mit.edu -L 9999:node-041:9999 -L 8001:node-048:8001 -L 8080:172.16.4.61:8181 -L 8123:172.16.4.51:8181 -L 8753:node-109:8753 -L 8124:node-111:8124
@@ -31,10 +32,12 @@ following script (it runs for ~20 minutes)
 
 	$/home/gridsan/groups/istcdata/technology/sstore2016/runsstorebigdawg.sh
 
-2. For screen 4, you need to have Tupleware running:
+2. For screen 4b, you need to have Tupleware running:
 
    $./tupleware -s  http://172.16.4.52:8181/bigdawg/query -p 9999
 
+3. For Screen 4a, you need to have macrobase running:
+/home/gridsan/groups/istcdata/technology/macrobase/macrobase/bin/server.sh conf/istc_demo.yaml
 
 ##Current Places where things are running:
 
@@ -45,6 +48,7 @@ BigDAWG (others): 172.16.4.61:8181
 Webserver: node-048:8001
 Myria: node-109:8753
 Myria Web: node-111:8124
+Macrobase: node-048:8765
 
 ##Using script in demo_scripts:
 
