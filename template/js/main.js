@@ -18,6 +18,11 @@ function screen3(){
 	$('#3').css('visibility','visible').fadeIn()
 }
 
+function screen4a(){
+        $('iframe:not(#4a)').fadeOut()
+        $('#4a').css('visibility','visible').fadeIn()
+}
+
 function screen4c(){
 	$('iframe:not(#4b)').fadeOut()
 	$('#4b').css('visibility','visible').fadeIn()

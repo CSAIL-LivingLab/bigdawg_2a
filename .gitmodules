@@ -7,3 +7,7 @@
 [submodule "screen4"]
 	path = screen4
 	url = https://github.com/RogerTangos/screen4.git
+[submodule "macrobase"]
+	path = macrobase
+	url = https://github.com/stanford-futuredata/macrobase.git
+	branch = bigdawg_demo
