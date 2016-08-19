@@ -58,7 +58,7 @@ function updateTech(tools){
 	var tech = $('#tech');
 	tech.empty();
 
-	tech.append('<li class="tool_item" style="color: black; font-weight: bold;">Tools on This Screen:</li>')
+	tech.append('<li class="tool_item" style="color: black; font-weight: bold;">Tools Presented:</li>')
 
 	for (var i = 0; i < tools.length; i++) {
 		tool = tools[i];
