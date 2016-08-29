@@ -34,16 +34,16 @@ $ ssh vijay@txe1-login.mit.edu -L 9999:node-041:9999 -L
 
 ##Screen Specific Instructions
 1. For screen 1, you need to have S-Store running by running the
-following script (it runs for ~20 minutes)
+following script (it runs for ~20 minutes). Currently hardcoded to node-041:
 
 	$/home/gridsan/groups/istcdata/technology/sstore2016/runsstorebigdawg.sh
 
-2. For screen 4b, you need to have Tupleware running:
+or for long version:
 
-   $./tupleware -s  http://172.16.4.52:8181/bigdawg/query -p 9999
+   $ /home/gridsan/groups/istcdata/technology/sstore2016/runsstorebigdawglong.sh
 
-3. For Screen 4a, you need to have macrobase running:
-$./macrobase/bin/server.sh conf/istc_demo.yaml
+2. For Screen 4a, you need to have macrobase running:
+$./macrobase/bin/server.sh conf/istc_demo.yaml:
 
 (to change the port, you need to add the following:
     applicationConnectors:
@@ -51,6 +51,11 @@ $./macrobase/bin/server.sh conf/istc_demo.yaml
         port: 8765
 under server:
 ) link: https://github.com/stanford-futuredata/macrobase/wiki/Development-Notes		  
+
+3. For screen 4b, you need to have Tupleware running (screen4 folder) :
+
+   $./tupleware -s  http://172.16.4.52:8181/bigdawg/query -p 9999
+
 
 ##Current Places where things are running:
 
@@ -68,5 +73,7 @@ Macrobase: node-048:8765
 $python runDemo.py USERNAME
 =======
 1. Port forward to txe1: `ssh -i ~/.ssh/id_rsa -L localhost:8080:172.16.4.61:8181 YOURUSERNAME@txe1-portal.mit.edu`
-2. Run a python simplehttpserver in the home directory: `python -m SimpleHTTPServer 8000`
+2. Run a python simplehttpserver in the home directory: `python -m SimpleHTTPServer 8001`
 3. Open localhost in the browser: http://localhost:8000/template/
+
+
